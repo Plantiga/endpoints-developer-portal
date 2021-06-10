@@ -3,7 +3,7 @@
 ## Development Flow 
 
 1. Setup your Rasbperry Pi as explained in the [secton below](https://github.com/Plantiga/endpoints-developer-portal/blob/srossross-patch-2/api.eyeofthetiga.com/Guides/Getting%20Started.md#setting-up-the-rasbperry-pi). This step is only required once
-2. Before you want to connect the application, you must [run the emulator on the pi](https://github.com/Plantiga/endpoints-developer-portal/blob/srossross-patch-2/api.eyeofthetiga.com/Guides/Getting%20Started.md#install-and-run-the-base-station-emulator)
+2. Before you connect the application, you must [run the emulator on the pi](https://github.com/Plantiga/endpoints-developer-portal/blob/srossross-patch-2/api.eyeofthetiga.com/Guides/Getting%20Started.md#install-and-run-the-base-station-emulator)
 3. To test that the emulator is working you can use a mobile tool like:
     * [LightBlue](https://punchthrough.com/lightblue/) for mobile
     * [BlueSee](https://www.synapse.com/bluesee) for mac desktop
