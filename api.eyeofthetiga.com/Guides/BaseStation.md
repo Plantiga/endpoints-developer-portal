@@ -104,11 +104,11 @@ If a `PASSWORD_ERROR` or `NETWORK_ERROR` is received, the user should be told to
 
 ## 0xD101 API Key
 
-| Defined Submissions           | Description                                                                      | Behaviour of other Characteristics                                                                            |
-| ----------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `"my_team_key"`               | A good key                                                                       | <ul><li>0xD102 : `KEY_OK`</li><li>0xD103 : `super_awesome_team`</li><li>0xD104 : `SuperAwesomeTeam`</li></ul> |
-| `"timeout_key"`               | A key that will cause the emulator to return a timeout error to Plantiga Servers | <ul><li>0xD102 : `CONNECTION_TIMEOUT`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>          |
-| `"bad_key"`  or anything else | A bad key                                                                        | <ul><li>0xD102 : `KEY_INVALID`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>                 |
+| Defined Submissions                                                   | Description                   | Behaviour of other Characteristics                                                                            |
+| --------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `"my_team_key"` <br> or `"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"`, `X` matches `[a-z0-9]`                                                   | A good key                    | <ul><li>0xD102 : `KEY_OK`</li><li>0xD103 : `super_awesome_team`</li><li>0xD104 : `SuperAwesomeTeam`</li></ul> |
+| `"timeout_key"`                                                       | A key to test timeout errors  | <ul><li>0xD102 : `CONNECTION_TIMEOUT`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>          |
+| `"bad_key"` <br> or anything else                                         | A bad key                     | <ul><li>0xD102 : `KEY_INVALID`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>                 |
 <br>
 
 ## 0xD102 Api status
@@ -122,10 +122,14 @@ If a `PASSWORD_ERROR` or `NETWORK_ERROR` is received, the user should be told to
 <br>
 
 ## 0xD103 Team ID
+
 ### **What type of information will show up in this notify characteristic?**
+
 > An arbitrary length slugged string
 <br>
 
 ## 0xD104 Team Name
+
 ### **What type of information will show up in this notify characteristic?**
+
 > An arbitrary length string, all characters valid
