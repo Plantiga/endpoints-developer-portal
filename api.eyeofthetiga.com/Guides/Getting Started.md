@@ -53,7 +53,7 @@ The Base Station Emulator is intended to be run on a Raspberry Pi running the [R
 ## Install and run the Base Station Emulator
 
 1. Download the latest version of the Emulator binary using the command
-   `wget https://storage.googleapis.com/plantiga-prod-downloads/SmartDockBLE/2021.06.29+a7e9de3/plantiga-ble-emulator`
+   `wget https://storage.googleapis.com/plantiga-prod-downloads/SmartDockBLE/2021.06.30+e86a72f/plantiga-ble-emulator`
 
    and use `chmod +x plantiga-ble-emulator` to make it executable.
 2. Disable the Linux bluetooth service with `sudo systemctl disable bluetooth.service` and ensure it is stopped, as that will interfere with the emulator.
