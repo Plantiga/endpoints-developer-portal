@@ -100,6 +100,7 @@ If a `PASSWORD_ERROR` or `NETWORK_ERROR` is received, the user should be told to
 | `0xD102`       | Api Status      | read,notify |
 | `0xD103`       | Team ID         | notify      |
 | `0xD104`       | Team Name       | notify      |
+| `0xD105`       | API Target      | write, read |
 <br>
 
 ## 0xD101 API Key
@@ -133,3 +134,14 @@ If a `PASSWORD_ERROR` or `NETWORK_ERROR` is received, the user should be told to
 ### **What type of information will show up in this notify characteristic?**
 
 > An arbitrary length string, all characters valid
+
+## 0xD105 API Target
+
+This characteristic is for internal usage only, and should not be included in frontend applications.
+
+When submitting an api key to `0xD101`, the API target must match the server of the targeted organization.
+
+| Possible Values        | Description                                                      |
+| ---------------------- | ---------------------------------------------------------------- |
+| `PROD`                 | the API target is the plantiga-prod server.                      |
+| `DEV`                  | the API target is the plantiga-dev server.                       |
