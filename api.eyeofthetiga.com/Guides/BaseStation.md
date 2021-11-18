@@ -8,6 +8,18 @@
 
 # About the BaseStation Emulator
 
+## Flags
+Additonal flags can be set when starting the emulator to augment the behaviour.
+Use them like so:
+```
+./plantiga-ble-emulator --no-network=true --random-disconnects=true --random-weight=0.5
+```
+`no-network` can be set to true and no network list will show on `0xD003`
+
+`random-disconnects` can be set to true and will cause the emulator to attempt to disconnect every 1 second, based on a random chance
+
+`random-weight` will change the comparison value to disconnect randomly, with `0.0` being no disconnections and `1.0` disconnecting every time
+
 # GATT WIFI Service
 
 | Allocated UUID | Description                     | Attributes  |
@@ -30,14 +42,16 @@ Writing the `0xD001` and `0xD002` characteristics will not be enough to start a 
 
 ## 0xD001 Network SSID
 
-| Defined Submissions   | Description                                                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `"Happy Path"`        | All passwords work on this network, `0xD005` will always notify as `CONNECTED` after `0xD004` is set                     |
-| `"Bad Network"`       | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR`                                               |
-| `"Firewall"`          | After `0xD004` is set, then `0xD005` will always notify as `CONNECTION_ERROR`                                            |
-| `"Bad Password"`      | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR | PASSWORD_ERROR`                              |
-| `"Duplicate Network"` | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR`                                               |
-| `"Error Network"`     | After `0xD004` is set, then `0xD005` will always notify as `SOFTWARE_ERROR`                                              |
+| Defined Submissions    | Description                                                                                                          |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `"Happy Path"`         | All passwords work on this network, `0xD005` will always notify as `CONNECTED` after `0xD004` is set                 |
+| `"Bad Network"`        | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR`                                           |
+| `"Firewall"`           | After `0xD004` is set, then `0xD005` will always notify as `CONNECTION_ERROR`                                        |
+| `"Bad Password"`       | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR | PASSWORD_ERROR`                          |
+| `"Duplicate Network"`  | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR`                                           |
+| `"Error Network"`      | After `0xD004` is set, then `0xD005` will always notify as `SOFTWARE_ERROR`                                          |
+| `"Disconnect Network"` | After `0xD002` is set, then the peripheral will disconnect from the central (mobile)                                 |
+| `"Flaky Network"`      | After `0xD004` is set, then the peripheral will give a `NETWORK_ERROR` 50% of the time and `CONNECTED` the other 50% |
 <br>
 
 ## 0xD002 Password
@@ -60,6 +74,8 @@ The following networks will be presented:
 * `"Duplicate Network"`
 * `"Duplicate Network"`
 * `"Error Network"`
+* `"Disconnect Network"`
+* `"Flaky Network"`
 <br>
 
 ## 0xD004 Trigger a Connection Attempt
@@ -105,11 +121,11 @@ If a `PASSWORD_ERROR` or `NETWORK_ERROR` is received, the user should be told to
 
 ## 0xD101 API Key
 
-| Defined Submissions                                                   | Description                   | Behaviour of other Characteristics                                                                            |
-| --------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `"my_team_key"` <br> or `"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"`, `X` matches `[a-z0-9]`                                                   | A good key                    | <ul><li>0xD102 : `KEY_OK`</li><li>0xD103 : `super_awesome_team`</li><li>0xD104 : `SuperAwesomeTeam`</li></ul> |
-| `"timeout_key"`                                                       | A key to test timeout errors  | <ul><li>0xD102 : `CONNECTION_TIMEOUT`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>          |
-| `"bad_key"` <br> or anything else                                         | A bad key                     | <ul><li>0xD102 : `KEY_INVALID`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>                 |
+| Defined Submissions                                                                      | Description                  | Behaviour of other Characteristics                                                                            |
+| ---------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `"my_team_key"` <br> or `"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"`, `X` matches `[a-z0-9]` | A good key                   | <ul><li>0xD102 : `KEY_OK`</li><li>0xD103 : `super_awesome_team`</li><li>0xD104 : `SuperAwesomeTeam`</li></ul> |
+| `"timeout_key"`                                                                          | A key to test timeout errors | <ul><li>0xD102 : `CONNECTION_TIMEOUT`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>          |
+| `"bad_key"` <br> or anything else                                                        | A bad key                    | <ul><li>0xD102 : `KEY_INVALID`</li><li>0xD103 : `0xXXXX` </li><li>0xD104 : `0xXXXX`</li></ul>                 |
 <br>
 
 ## 0xD102 Api status
@@ -141,7 +157,7 @@ This characteristic is for internal usage only, and should not be included in fr
 
 When submitting an api key to `0xD101`, the API target must match the server of the targeted organization.
 
-| Possible Values        | Description                                                      |
-| ---------------------- | ---------------------------------------------------------------- |
-| `PROD`                 | the API target is the plantiga-prod server.                      |
-| `DEV`                  | the API target is the plantiga-dev server.                       |
+| Possible Values | Description                                 |
+| --------------- | ------------------------------------------- |
+| `PROD`          | the API target is the plantiga-prod server. |
+| `DEV`           | the API target is the plantiga-dev server.  |
