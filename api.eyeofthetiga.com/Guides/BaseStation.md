@@ -74,6 +74,8 @@ The following networks will be presented:
 * `"Duplicate Network"`
 * `"Duplicate Network"`
 * `"Error Network"`
+* `"Disconnect Network"`
+* `"Flaky Network"`
 <br>
 
 ## 0xD004 Trigger a Connection Attempt
