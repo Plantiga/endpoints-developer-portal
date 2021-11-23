@@ -167,7 +167,7 @@ When submitting an api key to `0xD101`, the API target must match the server of 
 
 Navigate to https://console.cloud.google.com/logs/viewer?project=plantiga-dev
 
-Then lookup your base station ID it should look like this `SD-ABCDEFGHIHKL`
+Then lookup your base station ID it should look like this `SD-ABCDEFGHIHKL` you can find the ID by navigating to the page https://beta.plantiga.io/current-org/profile/cloud-adapters for the team that you set up the base station with.
 
 in the log search field enter:
 
