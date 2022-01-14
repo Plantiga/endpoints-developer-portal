@@ -45,7 +45,9 @@ Writing the `0xD001` and `0xD002` characteristics will not be enough to start a 
 | Defined Submissions    | Description                                                                                                          |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `"Happy Path"`         | All passwords work on this network, `0xD005` will always notify as `CONNECTED` after `0xD004` is set                 |
-| `"😀 Happy Path 😀"`   | All passwords work on this network, `0xD005` will always notify as `CONNECTED` after `0xD004` is set                 |
+| `"😀 Happy Path 😀"`   | All passwords work on this network, `0xD005` will always notify as `CONNECTED` after `0xD004` is set                  |
+| `"Happy Path null: \x00\x00\x00\x00"` | All passwords work on this network, `0xD005` will always notify as `CONNECTED` after `0xD004` is set  |
+| `"A Happy Path Maximum Length SSID"`  | All passwords work on this network, `0xD005` will always notify as `CONNECTED` after `0xD004` is set  |
 | `"Bad Network"`        | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR`                                           |
 | `"Firewall"`           | After `0xD004` is set, then `0xD005` will always notify as `CONNECTION_ERROR`                                        |
 | `"Bad Password"`       | After `0xD004` is set, then `0xD005` will always notify as `NETWORK_ERROR | PASSWORD_ERROR`                          |
